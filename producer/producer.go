@@ -30,9 +30,9 @@ func main() {
 		}
 	}()
 
-	for i := 0; i < 1000; i++ {
+	for i := 0; i < 10; i++ {
 		key := fmt.Sprintf("key-%d", i)
-		value := fmt.Sprintf("value-%d", i)
+		value := fmt.Sprintf("hello-kafka-%d", i)
 		err := p.Produce(&kafka.Message{
 			TopicPartition: kafka.TopicPartition{Topic: &topic, Partition: kafka.PartitionAny},
 			Key:            []byte(key),
@@ -45,5 +45,5 @@ func main() {
 	}
 
 	// Wait for all messages to be delivered
-	p.Flush(10000)
+	p.Flush(10)
 }
